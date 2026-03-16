@@ -6,139 +6,103 @@
 <title>HTTP Custom — لوحة التحكم</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
   font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-  background: #0d1117;
-  color: #e6edf3;
-  min-height: 100vh;
-  padding: 20px 16px 40px;
+  background: #0d1117; color: #e6edf3;
+  min-height: 100vh; padding: 20px 16px 40px;
 }
-
 .container { max-width: 700px; margin: 0 auto; }
-
 .header { text-align: center; margin-bottom: 24px; }
 .header h1 { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
 .header .sub { font-size: 13px; color: #8b949e; }
 
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 20px;
-}
-.stat-card {
-  background: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 10px;
-  padding: 14px 10px;
-  text-align: center;
-}
+.stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 20px; }
+.stat-card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 14px 10px; text-align: center; }
 .stat-num { font-size: 24px; font-weight: 700; display: block; margin-bottom: 4px; }
 .stat-label { font-size: 12px; color: #8b949e; }
-.green { color: #3fb950; }
-.yellow { color: #d29922; }
-.red { color: #f85149; }
+.green { color: #3fb950; } .yellow { color: #d29922; } .red { color: #f85149; }
 
 .info-bar {
-  background: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 10px;
-  padding: 12px 16px;
-  font-size: 13px;
-  color: #8b949e;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+  padding: 12px 16px; font-size: 13px; color: #8b949e;
+  margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
 }
-.pulse {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: #3fb950;
-  flex-shrink: 0;
-  animation: pulse 2s infinite;
-}
+.pulse { width:8px; height:8px; border-radius:50%; background:#3fb950; flex-shrink:0; animation:pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
 
+/* Token box */
+.token-box {
+  background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 20px; font-size: 13px;
+}
+.token-box summary { cursor: pointer; color: #8b949e; user-select: none; }
+.token-box summary:hover { color: #e6edf3; }
+.token-inner { margin-top: 12px; }
+.token-inner p { font-size: 12px; color: #8b949e; margin-bottom: 8px; line-height: 1.6; }
+.token-inner a { color: #58a6ff; }
+.token-row { display: flex; gap: 8px; margin-top: 8px; }
+.token-input {
+  flex: 1; background: #0d1117; border: 1px solid #30363d; border-radius: 6px;
+  color: #e6edf3; padding: 7px 10px; font-size: 12px; font-family: monospace;
+}
+.token-input:focus { outline: none; border-color: #58a6ff; }
+.token-save {
+  background: #238636; border: 1px solid #2ea043; border-radius: 6px;
+  color: #fff; padding: 7px 14px; font-size: 12px; cursor: pointer;
+  font-family: inherit; white-space: nowrap;
+}
+.token-save:hover { background: #2ea043; }
+
 .operator { margin-bottom: 14px; }
-
 .op-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #161b22;
-  border: 1px solid #30363d;
-  border-bottom: none;
-  border-radius: 10px 10px 0 0;
-  padding: 12px 16px;
+  display: flex; align-items: center; gap: 10px;
+  background: #161b22; border: 1px solid #30363d;
+  border-bottom: none; border-radius: 10px 10px 0 0; padding: 12px 16px;
 }
-.op-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-.op-name { font-size: 15px; font-weight: 600; flex: 1; }
-.op-count {
-  font-size: 11px; padding: 3px 10px;
-  border-radius: 20px; border: 1px solid #30363d; color: #8b949e;
-}
+.op-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.op-name { font-size:15px; font-weight:600; flex:1; }
+.op-count { font-size:11px; padding:3px 10px; border-radius:20px; border:1px solid #30363d; color:#8b949e; }
 
-.files-list {
-  background: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 0 0 10px 10px;
-  overflow: hidden;
-}
-
+.files-list { background:#161b22; border:1px solid #30363d; border-radius:0 0 10px 10px; overflow:hidden; }
 .file-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 11px 16px;
-  border-bottom: 1px solid #21262d;
-  transition: background .15s;
+  display:flex; align-items:center; gap:10px;
+  padding:11px 16px; border-bottom:1px solid #21262d; transition:background .15s;
 }
-.file-row:last-child { border-bottom: none; }
-.file-row:hover { background: #1c2128; }
-
-.file-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.dot-ok   { background: #3fb950; }
-.dot-warn { background: #d29922; }
-.dot-old  { background: #f85149; }
-
-.file-name { font-size: 13px; flex: 1; color: #e6edf3; font-family: monospace; }
-.file-size { font-size: 11px; color: #8b949e; min-width: 52px; text-align: left; }
-.file-age  { font-size: 11px; min-width: 100px; text-align: left; }
-
+.file-row:last-child { border-bottom:none; }
+.file-row:hover { background:#1c2128; }
+.file-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.dot-ok { background:#3fb950; } .dot-warn { background:#d29922; } .dot-old { background:#f85149; }
+.file-name { font-size:13px; flex:1; color:#e6edf3; font-family:monospace; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.file-size { font-size:11px; color:#8b949e; min-width:52px; text-align:left; }
+.file-age { font-size:11px; min-width:95px; text-align:left; }
 .btn-dl {
-  font-size: 11px; padding: 4px 10px;
-  border-radius: 6px; border: 1px solid #30363d;
-  background: transparent; color: #8b949e;
-  cursor: pointer; text-decoration: none;
-  transition: all .15s; white-space: nowrap;
+  font-size:11px; padding:4px 10px; border-radius:6px;
+  border:1px solid #30363d; background:transparent; color:#8b949e;
+  cursor:pointer; text-decoration:none; transition:all .15s; white-space:nowrap;
 }
-.btn-dl:hover { border-color: #8b949e; color: #e6edf3; }
+.btn-dl:hover { border-color:#8b949e; color:#e6edf3; }
 
-.empty-folder {
-  padding: 18px;
-  text-align: center;
-  font-size: 13px;
-  color: #8b949e;
+.empty-folder { padding:18px; text-align:center; font-size:13px; color:#8b949e; }
+.error-box {
+  background:#1a0a0a; border:1px solid #f8514966; border-radius:10px;
+  padding:14px 16px; font-size:13px; color:#f85149; margin-bottom:16px; line-height:1.7;
 }
 
-.loading { text-align: center; padding: 40px; color: #8b949e; font-size: 14px; }
+.loading { text-align:center; padding:40px; color:#8b949e; font-size:14px; }
 .spinner {
-  display: inline-block; width: 20px; height: 20px;
-  border: 2px solid #30363d; border-top-color: #3fb950;
-  border-radius: 50%; animation: spin .8s linear infinite; margin-bottom: 10px;
+  display:inline-block; width:20px; height:20px;
+  border:2px solid #30363d; border-top-color:#3fb950;
+  border-radius:50%; animation:spin .8s linear infinite; margin-bottom:10px;
 }
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin { to { transform:rotate(360deg); } }
 
 .refresh-btn {
-  display: block; width: 100%; margin-top: 20px;
-  padding: 11px; background: #21262d;
-  border: 1px solid #30363d; border-radius: 10px;
-  color: #8b949e; font-size: 13px; cursor: pointer;
-  font-family: inherit; transition: all .15s;
+  display:block; width:100%; margin-top:20px; padding:11px;
+  background:#21262d; border:1px solid #30363d; border-radius:10px;
+  color:#8b949e; font-size:13px; cursor:pointer; font-family:inherit; transition:all .15s;
 }
-.refresh-btn:hover { background: #30363d; color: #e6edf3; }
+.refresh-btn:hover { background:#30363d; color:#e6edf3; }
+.rate-info { font-size:11px; color:#8b949e; text-align:center; margin-top:10px; }
 </style>
 </head>
 <body>
@@ -150,18 +114,9 @@ body {
   </div>
 
   <div class="stats">
-    <div class="stat-card">
-      <span class="stat-num green" id="s-ok">—</span>
-      <span class="stat-label">محدّث</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-num yellow" id="s-warn">—</span>
-      <span class="stat-label">قديم</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-num red" id="s-miss">—</span>
-      <span class="stat-label">مجلد فارغ</span>
-    </div>
+    <div class="stat-card"><span class="stat-num green" id="s-ok">—</span><span class="stat-label">محدّث</span></div>
+    <div class="stat-card"><span class="stat-num yellow" id="s-warn">—</span><span class="stat-label">قديم</span></div>
+    <div class="stat-card"><span class="stat-num red" id="s-miss">—</span><span class="stat-label">فارغ</span></div>
   </div>
 
   <div class="info-bar">
@@ -169,19 +124,35 @@ body {
     <span id="info-text">جاري الاتصال بـ GitHub...</span>
   </div>
 
+  <!-- Token Section -->
+  <details class="token-box" id="token-details">
+    <summary>🔑 GitHub Token (اختياري — لحل مشكلة التعليق)</summary>
+    <div class="token-inner">
+      <p>
+        بدون token تسمح GitHub بـ <strong style="color:#e6edf3">60 طلب/ساعة</strong> فقط.
+        مع token تصبح <strong style="color:#3fb950">5000 طلب/ساعة</strong>.<br>
+        أنشئ token من: <a href="https://github.com/settings/tokens/new?scopes=public_repo" target="_blank">settings/tokens</a>
+        — اختر <strong style="color:#e6edf3">public_repo</strong> فقط.
+      </p>
+      <div class="token-row">
+        <input class="token-input" id="token-input" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
+        <button class="token-save" onclick="saveToken()">حفظ</button>
+      </div>
+    </div>
+  </details>
+
+  <div id="error-container"></div>
   <div id="main"></div>
 
   <button class="refresh-btn" onclick="init()">↻ تحديث</button>
+  <div class="rate-info" id="rate-info"></div>
 
 </div>
 <script>
 // ══════════════════════════════════════════
-//  الإعدادات — غيّر هنا فقط
-// ══════════════════════════════════════════
 const USER   = 'YChangat';
 const REPO   = 'HTTP-Custom';
 const BRANCH = 'main';
-
 const FOLDERS = [
   { name: 'INWI',   color: '#8B2FC9' },
   { name: 'IAM',    color: '#CC0000' },
@@ -192,14 +163,32 @@ const FOLDERS = [
 
 const API = `https://api.github.com/repos/${USER}/${REPO}`;
 const RAW = `https://raw.githubusercontent.com/${USER}/${REPO}/${BRANCH}`;
-const H   = { 'Accept': 'application/vnd.github.v3+json' };
+
+function getToken() {
+  return localStorage.getItem('gh_token') || '';
+}
+function saveToken() {
+  const val = document.getElementById('token-input').value.trim();
+  if (val) {
+    localStorage.setItem('gh_token', val);
+    document.getElementById('token-details').removeAttribute('open');
+    init();
+  }
+}
+
+function headers() {
+  const t = getToken();
+  const h = { 'Accept': 'application/vnd.github.v3+json' };
+  if (t) h['Authorization'] = `token ${t}`;
+  return h;
+}
 
 function ago(dateStr) {
   const h = (Date.now() - new Date(dateStr)) / 3600000;
   if (h < 1)  return { t: 'منذ أقل من ساعة', c: 'green' };
   if (h < 24) return { t: `منذ ${Math.floor(h)} ساعة`, c: 'green' };
   if (h < 48) return { t: 'منذ يوم', c: 'yellow' };
-  return       { t: `منذ ${Math.floor(h/24)} أيام`, c: 'red' };
+  return { t: `منذ ${Math.floor(h/24)} أيام`, c: 'red' };
 }
 
 function kb(b) {
@@ -207,18 +196,35 @@ function kb(b) {
   return b < 1024 ? b + ' B' : (b/1024).toFixed(1) + ' KB';
 }
 
-async function getFolderFiles(folder) {
+async function apiFetch(url) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
   try {
-    const r = await fetch(`${API}/contents/${folder}?ref=${BRANCH}`, { headers: H });
-    if (!r.ok) return [];
-    const items = await r.json();
-    return Array.isArray(items) ? items.filter(f => f.type === 'file') : [];
-  } catch { return []; }
+    const r = await fetch(url, { headers: headers(), signal: controller.signal });
+    clearTimeout(timeout);
+    return r;
+  } catch(e) {
+    clearTimeout(timeout);
+    throw e;
+  }
 }
 
-async function getLastCommitDate(path) {
+async function getFolderFiles(folder) {
   try {
-    const r = await fetch(`${API}/commits?path=${encodeURIComponent(path)}&per_page=1`, { headers: H });
+    const r = await apiFetch(`${API}/contents/${folder}?ref=${BRANCH}`);
+    if (r.status === 404) return { files: [], error: 'notfound' };
+    if (r.status === 403) return { files: [], error: 'ratelimit' };
+    if (!r.ok) return { files: [], error: 'error' };
+    const items = await r.json();
+    return { files: Array.isArray(items) ? items.filter(f => f.type === 'file') : [], error: null };
+  } catch(e) {
+    return { files: [], error: e.name === 'AbortError' ? 'timeout' : 'network' };
+  }
+}
+
+async function getLastCommit(path) {
+  try {
+    const r = await apiFetch(`${API}/commits?path=${encodeURIComponent(path)}&per_page=1`);
     if (!r.ok) return null;
     const c = await r.json();
     return c.length ? c[0].commit.committer.date : null;
@@ -227,30 +233,77 @@ async function getLastCommitDate(path) {
 
 async function init() {
   const main = document.getElementById('main');
+  const errBox = document.getElementById('error-container');
+  errBox.innerHTML = '';
   main.innerHTML = '<div class="loading"><div class="spinner"></div><div>جاري اكتشاف الملفات...</div></div>';
   document.getElementById('s-ok').textContent   = '—';
   document.getElementById('s-warn').textContent = '—';
   document.getElementById('s-miss').textContent = '—';
-  document.getElementById('info-text').textContent = 'جاري الاتصال بـ GitHub...';
+  document.getElementById('info-text').textContent = 'جاري الاتصال...';
+  document.getElementById('rate-info').textContent = '';
+
+  // إذا كان token محفوظ أظهره في الحقل
+  const saved = getToken();
+  if (saved) document.getElementById('token-input').value = saved;
 
   // آخر commit للمستودع
+  let repoOk = false;
   try {
-    const r = await fetch(`${API}/commits?per_page=1`, { headers: H });
+    const r = await apiFetch(`${API}/commits?per_page=1`);
     if (r.ok) {
+      // عرض معلومات rate limit
+      const limit     = r.headers.get('X-RateLimit-Limit');
+      const remaining = r.headers.get('X-RateLimit-Remaining');
+      if (limit) {
+        document.getElementById('rate-info').textContent =
+          `GitHub API: ${remaining}/${limit} طلب متبقي`;
+      }
       const c = await r.json();
       if (c.length) {
         const a = ago(c[0].commit.committer.date);
         document.getElementById('info-text').innerHTML =
           `آخر تحديث للمستودع: <span class="${a.c}">${a.t}</span>`;
+        repoOk = true;
       }
+    } else if (r.status === 403) {
+      document.getElementById('info-text').innerHTML =
+        '<span class="red">⚠ تجاوزت حد الطلبات — أضف GitHub Token</span>';
+      errBox.innerHTML = `
+        <div class="error-box">
+          ⚠ <strong>تجاوزت حد GitHub API (60 طلب/ساعة)</strong><br>
+          الحل: افتح قسم 🔑 GitHub Token أعلاه وأضف token مجاني لرفع الحد إلى 5000 طلب/ساعة.
+        </div>`;
+      main.innerHTML = '';
+      return;
+    } else if (r.status === 404) {
+      document.getElementById('info-text').innerHTML =
+        '<span class="red">⚠ المستودع غير موجود أو خاص</span>';
+      main.innerHTML = '';
+      return;
     }
-  } catch {}
+  } catch(e) {
+    const msg = e.name === 'AbortError' ? 'انتهت مهلة الاتصال' : 'تعذّر الاتصال بـ GitHub';
+    document.getElementById('info-text').innerHTML = `<span class="red">⚠ ${msg}</span>`;
+    errBox.innerHTML = `<div class="error-box">⚠ ${msg} — تحقق من اتصالك بالإنترنت ثم اضغط تحديث.</div>`;
+    main.innerHTML = '';
+    return;
+  }
 
   let totalOk = 0, totalWarn = 0, totalEmpty = 0;
   let html = '';
 
   for (const folder of FOLDERS) {
-    const files = await getFolderFiles(folder.name);
+    const { files, error } = await getFolderFiles(folder.name);
+
+    if (error === 'ratelimit') {
+      errBox.innerHTML = `<div class="error-box">⚠ تجاوزت حد الطلبات — أضف GitHub Token من القسم أعلاه.</div>`;
+      break;
+    }
+
+    if (error === 'timeout' || error === 'network') {
+      html += `<div class="error-box">⚠ تعذّر تحميل مجلد ${folder.name} — ${error === 'timeout' ? 'انتهت المهلة' : 'خطأ في الشبكة'}</div>`;
+      continue;
+    }
 
     if (files.length === 0) {
       totalEmpty++;
@@ -270,34 +323,29 @@ async function init() {
 
     // جلب تاريخ آخر commit لكل ملف بالتوازي
     const dates = await Promise.all(
-      files.map(f => getLastCommitDate(`${folder.name}/${f.name}`))
+      files.map(f => getLastCommit(`${folder.name}/${f.name}`))
     );
 
     let rowsHtml = '';
     files.forEach((f, i) => {
-      const date  = dates[i];
-      let dotCls  = 'dot-old';
-      let ageTxt  = 'غير معروف';
-      let ageCls  = 'red';
-
+      const date = dates[i];
+      let dotCls = 'dot-old', ageTxt = 'غير معروف', ageCls = 'red';
       if (date) {
-        const a    = ago(date);
-        ageTxt     = a.t;
-        ageCls     = a.c;
-        const h    = (Date.now() - new Date(date)) / 3600000;
-        dotCls     = h < 24 ? 'dot-ok' : h < 48 ? 'dot-warn' : 'dot-old';
+        const a = ago(date);
+        ageTxt = a.t; ageCls = a.c;
+        const h = (Date.now() - new Date(date)) / 3600000;
+        dotCls = h < 24 ? 'dot-ok' : h < 48 ? 'dot-warn' : 'dot-old';
         if (h < 24) totalOk++; else totalWarn++;
       } else {
         totalWarn++;
       }
-
       rowsHtml += `
       <div class="file-row">
         <div class="file-dot ${dotCls}"></div>
-        <span class="file-name">${f.name}</span>
+        <span class="file-name" title="${f.name}">${f.name}</span>
         <span class="file-size">${kb(f.size)}</span>
         <span class="file-age ${ageCls}">${ageTxt}</span>
-        <a href="${RAW}/${folder.name}/${encodeURIComponent(f.name)}" target="_blank" download="${f.name}" class="btn-dl">⬇ تحميل</a>
+        <a href="${RAW}/${folder.name}/${encodeURIComponent(f.name)}" target="_blank" download="${f.name}" class="btn-dl">⬇</a>
       </div>`;
     });
 
@@ -315,7 +363,7 @@ async function init() {
   document.getElementById('s-ok').textContent   = totalOk;
   document.getElementById('s-warn').textContent = totalWarn;
   document.getElementById('s-miss').textContent = totalEmpty;
-  main.innerHTML = html;
+  main.innerHTML = html || '<div class="empty-folder">لا توجد بيانات</div>';
 }
 
 init();
