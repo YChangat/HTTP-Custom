@@ -5,205 +5,140 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HTTP Custom — لوحة التحكم</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-    background: #0d1117;
-    color: #e6edf3;
-    min-height: 100vh;
-    padding: 20px 16px 40px;
-  }
+body {
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  background: #0d1117;
+  color: #e6edf3;
+  min-height: 100vh;
+  padding: 20px 16px 40px;
+}
 
-  .container { max-width: 700px; margin: 0 auto; }
+.container { max-width: 700px; margin: 0 auto; }
 
-  /* Header */
-  .header {
-    text-align: center;
-    margin-bottom: 28px;
-  }
-  .header h1 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #e6edf3;
-    margin-bottom: 6px;
-  }
-  .header .sub {
-    font-size: 13px;
-    color: #8b949e;
-  }
+.header { text-align: center; margin-bottom: 24px; }
+.header h1 { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+.header .sub { font-size: 13px; color: #8b949e; }
 
-  /* Stats bar */
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 24px;
-  }
-  .stat-card {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 14px 10px;
-    text-align: center;
-  }
-  .stat-num {
-    font-size: 24px;
-    font-weight: 700;
-    display: block;
-    margin-bottom: 4px;
-  }
-  .stat-label { font-size: 12px; color: #8b949e; }
-  .green { color: #3fb950; }
-  .yellow { color: #d29922; }
-  .red { color: #f85149; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.stat-card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 14px 10px;
+  text-align: center;
+}
+.stat-num { font-size: 24px; font-weight: 700; display: block; margin-bottom: 4px; }
+.stat-label { font-size: 12px; color: #8b949e; }
+.green { color: #3fb950; }
+.yellow { color: #d29922; }
+.red { color: #f85149; }
 
-  /* Last update */
-  .last-update {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 12px 16px;
-    font-size: 13px;
-    color: #8b949e;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .pulse {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #3fb950;
-    flex-shrink: 0;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+.info-bar {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #8b949e;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pulse {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #3fb950;
+  flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-  /* Operator section */
-  .operator { margin-bottom: 16px; }
+.operator { margin-bottom: 14px; }
 
-  .op-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 10px 10px 0 0;
-    padding: 12px 16px;
-    border-bottom: none;
-  }
-  .op-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .op-name { font-size: 15px; font-weight: 600; flex: 1; }
-  .op-badge {
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    border: 1px solid #30363d;
-    color: #8b949e;
-  }
+.op-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  padding: 12px 16px;
+}
+.op-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.op-name { font-size: 15px; font-weight: 600; flex: 1; }
+.op-count {
+  font-size: 11px; padding: 3px 10px;
+  border-radius: 20px; border: 1px solid #30363d; color: #8b949e;
+}
 
-  .files-list {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 0 0 10px 10px;
-    overflow: hidden;
-  }
+.files-list {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+}
 
-  .file-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 11px 16px;
-    border-bottom: 1px solid #21262d;
-    transition: background .15s;
-  }
-  .file-row:last-child { border-bottom: none; }
-  .file-row:hover { background: #1c2128; }
+.file-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  border-bottom: 1px solid #21262d;
+  transition: background .15s;
+}
+.file-row:last-child { border-bottom: none; }
+.file-row:hover { background: #1c2128; }
 
-  .file-status {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .status-ok { background: #3fb950; }
-  .status-old { background: #d29922; }
-  .status-missing { background: #f85149; }
+.file-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.dot-ok   { background: #3fb950; }
+.dot-warn { background: #d29922; }
+.dot-old  { background: #f85149; }
 
-  .file-name { font-size: 14px; flex: 1; color: #e6edf3; }
-  .file-size { font-size: 12px; color: #8b949e; min-width: 50px; text-align: left; }
+.file-name { font-size: 13px; flex: 1; color: #e6edf3; font-family: monospace; }
+.file-size { font-size: 11px; color: #8b949e; min-width: 52px; text-align: left; }
+.file-age  { font-size: 11px; min-width: 100px; text-align: left; }
 
-  .file-date {
-    font-size: 11px;
-    color: #8b949e;
-    min-width: 80px;
-    text-align: left;
-  }
+.btn-dl {
+  font-size: 11px; padding: 4px 10px;
+  border-radius: 6px; border: 1px solid #30363d;
+  background: transparent; color: #8b949e;
+  cursor: pointer; text-decoration: none;
+  transition: all .15s; white-space: nowrap;
+}
+.btn-dl:hover { border-color: #8b949e; color: #e6edf3; }
 
-  .file-actions { display: flex; gap: 6px; }
+.empty-folder {
+  padding: 18px;
+  text-align: center;
+  font-size: 13px;
+  color: #8b949e;
+}
 
-  .btn-dl {
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 6px;
-    border: 1px solid #30363d;
-    background: transparent;
-    color: #8b949e;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all .15s;
-  }
-  .btn-dl:hover {
-    border-color: #8b949e;
-    color: #e6edf3;
-  }
+.loading { text-align: center; padding: 40px; color: #8b949e; font-size: 14px; }
+.spinner {
+  display: inline-block; width: 20px; height: 20px;
+  border: 2px solid #30363d; border-top-color: #3fb950;
+  border-radius: 50%; animation: spin .8s linear infinite; margin-bottom: 10px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
 
-  /* Loading / Error */
-  .loading {
-    text-align: center;
-    padding: 40px;
-    color: #8b949e;
-    font-size: 14px;
-  }
-  .spinner {
-    display: inline-block;
-    width: 20px; height: 20px;
-    border: 2px solid #30363d;
-    border-top-color: #3fb950;
-    border-radius: 50%;
-    animation: spin .8s linear infinite;
-    margin-bottom: 10px;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* Refresh btn */
-  .refresh-btn {
-    display: block;
-    width: 100%;
-    margin-top: 20px;
-    padding: 11px;
-    background: #21262d;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    color: #8b949e;
-    font-size: 13px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all .15s;
-  }
-  .refresh-btn:hover {
-    background: #30363d;
-    color: #e6edf3;
-  }
-
-  /* Age badge */
-  .age-ok { color: #3fb950; }
-  .age-warn { color: #d29922; }
-  .age-old { color: #f85149; }
+.refresh-btn {
+  display: block; width: 100%; margin-top: 20px;
+  padding: 11px; background: #21262d;
+  border: 1px solid #30363d; border-radius: 10px;
+  color: #8b949e; font-size: 13px; cursor: pointer;
+  font-family: inherit; transition: all .15s;
+}
+.refresh-btn:hover { background: #30363d; color: #e6edf3; }
 </style>
 </head>
 <body>
@@ -211,209 +146,179 @@
 
   <div class="header">
     <h1>⚡ HTTP Custom Files</h1>
-    <div class="sub" id="repo-info">YChangat / HTTP-Custom</div>
+    <div class="sub">YChangat / HTTP-Custom</div>
   </div>
 
   <div class="stats">
     <div class="stat-card">
-      <span class="stat-num green" id="stat-ok">—</span>
+      <span class="stat-num green" id="s-ok">—</span>
       <span class="stat-label">محدّث</span>
     </div>
     <div class="stat-card">
-      <span class="stat-num yellow" id="stat-old">—</span>
+      <span class="stat-num yellow" id="s-warn">—</span>
       <span class="stat-label">قديم</span>
     </div>
     <div class="stat-card">
-      <span class="stat-num red" id="stat-missing">—</span>
-      <span class="stat-label">مفقود</span>
+      <span class="stat-num red" id="s-miss">—</span>
+      <span class="stat-label">مجلد فارغ</span>
     </div>
   </div>
 
-  <div class="last-update" id="last-update-bar">
+  <div class="info-bar">
     <div class="pulse"></div>
-    <span id="last-update-text">جاري التحقق من الملفات...</span>
+    <span id="info-text">جاري الاتصال بـ GitHub...</span>
   </div>
 
-  <div id="operators-container">
-    <div class="loading">
-      <div class="spinner"></div>
-      <div>جاري تحميل بيانات الملفات...</div>
-    </div>
-  </div>
+  <div id="main"></div>
 
-  <button class="refresh-btn" onclick="loadAll()">↻ تحديث</button>
+  <button class="refresh-btn" onclick="init()">↻ تحديث</button>
 
 </div>
-
 <script>
-// ======================================================
-// الإعدادات — غيّر هنا فقط
-// ======================================================
-const GITHUB_USER = 'YChangat';
-const GITHUB_REPO = 'HTTP-Custom';
+// ══════════════════════════════════════════
+//  الإعدادات — غيّر هنا فقط
+// ══════════════════════════════════════════
+const USER   = 'YChangat';
+const REPO   = 'HTTP-Custom';
 const BRANCH = 'main';
 
-const OPERATORS = [
-  {
-    name: 'Inwi',
-    color: '#8B2FC9',
-    files: ['inwi-1.hc', 'inwi-2.hc', 'inwi-3.hc']
-  },
-  {
-    name: 'Orange',
-    color: '#FF6B00',
-    files: ['orange-1.hc', 'orange-2.hc', 'orange-3.hc']
-  },
-  {
-    name: 'IAM',
-    color: '#CC0000',
-    files: ['iam-1.hc', 'iam-2.hc', 'iam-3.hc']
-  },
-  {
-    name: 'WIN',
-    color: '#005BAC',
-    files: ['win-1.hc', 'win-2.hc', 'win-3.hc']
-  }
+const FOLDERS = [
+  { name: 'INWI',   color: '#8B2FC9' },
+  { name: 'IAM',    color: '#CC0000' },
+  { name: 'Orange', color: '#FF6B00' },
+  { name: 'WIN',    color: '#005BAC' },
 ];
-// ======================================================
+// ══════════════════════════════════════════
 
-const API = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/`;
-const RAW = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRANCH}/`;
-const COMMITS_API = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/commits?per_page=1`;
+const API = `https://api.github.com/repos/${USER}/${REPO}`;
+const RAW = `https://raw.githubusercontent.com/${USER}/${REPO}/${BRANCH}`;
+const H   = { 'Accept': 'application/vnd.github.v3+json' };
 
-let fileData = {};
-
-function timeAgo(dateStr) {
-  const diff = (Date.now() - new Date(dateStr)) / 1000 / 3600;
-  if (diff < 1) return { text: 'منذ أقل من ساعة', cls: 'age-ok' };
-  if (diff < 24) return { text: `منذ ${Math.floor(diff)} ساعة`, cls: 'age-ok' };
-  if (diff < 48) return { text: 'منذ يوم', cls: 'age-warn' };
-  const days = Math.floor(diff / 24);
-  return { text: `منذ ${days} أيام`, cls: days > 3 ? 'age-old' : 'age-warn' };
+function ago(dateStr) {
+  const h = (Date.now() - new Date(dateStr)) / 3600000;
+  if (h < 1)  return { t: 'منذ أقل من ساعة', c: 'green' };
+  if (h < 24) return { t: `منذ ${Math.floor(h)} ساعة`, c: 'green' };
+  if (h < 48) return { t: 'منذ يوم', c: 'yellow' };
+  return       { t: `منذ ${Math.floor(h/24)} أيام`, c: 'red' };
 }
 
-function formatSize(bytes) {
-  if (!bytes) return '—';
-  if (bytes < 1024) return bytes + ' B';
-  return (bytes / 1024).toFixed(1) + ' KB';
+function kb(b) {
+  if (!b && b !== 0) return '—';
+  return b < 1024 ? b + ' B' : (b/1024).toFixed(1) + ' KB';
 }
 
-async function fetchFileInfo(filename) {
+async function getFolderFiles(folder) {
   try {
-    const res = await fetch(API + filename, {
-      headers: { 'Accept': 'application/vnd.github.v3+json' }
-    });
-    if (!res.ok) return null;
-    const data = await res.json();
-    // get last commit date for this file
-    const commitRes = await fetch(
-      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/commits?path=${filename}&per_page=1`,
-      { headers: { 'Accept': 'application/vnd.github.v3+json' } }
-    );
-    let date = null;
-    if (commitRes.ok) {
-      const commits = await commitRes.json();
-      if (commits.length > 0) {
-        date = commits[0].commit.committer.date;
-      }
-    }
-    return { size: data.size, sha: data.sha, date, download_url: data.download_url };
-  } catch {
-    return null;
-  }
+    const r = await fetch(`${API}/contents/${folder}?ref=${BRANCH}`, { headers: H });
+    if (!r.ok) return [];
+    const items = await r.json();
+    return Array.isArray(items) ? items.filter(f => f.type === 'file') : [];
+  } catch { return []; }
 }
 
-async function loadAll() {
-  const container = document.getElementById('operators-container');
-  container.innerHTML = '<div class="loading"><div class="spinner"></div><div>جاري تحميل البيانات...</div></div>';
-
-  document.getElementById('stat-ok').textContent = '—';
-  document.getElementById('stat-old').textContent = '—';
-  document.getElementById('stat-missing').textContent = '—';
-  document.getElementById('last-update-text').textContent = 'جاري التحقق...';
-
-  // fetch last repo commit
+async function getLastCommitDate(path) {
   try {
-    const r = await fetch(COMMITS_API, { headers: { 'Accept': 'application/vnd.github.v3+json' } });
+    const r = await fetch(`${API}/commits?path=${encodeURIComponent(path)}&per_page=1`, { headers: H });
+    if (!r.ok) return null;
+    const c = await r.json();
+    return c.length ? c[0].commit.committer.date : null;
+  } catch { return null; }
+}
+
+async function init() {
+  const main = document.getElementById('main');
+  main.innerHTML = '<div class="loading"><div class="spinner"></div><div>جاري اكتشاف الملفات...</div></div>';
+  document.getElementById('s-ok').textContent   = '—';
+  document.getElementById('s-warn').textContent = '—';
+  document.getElementById('s-miss').textContent = '—';
+  document.getElementById('info-text').textContent = 'جاري الاتصال بـ GitHub...';
+
+  // آخر commit للمستودع
+  try {
+    const r = await fetch(`${API}/commits?per_page=1`, { headers: H });
     if (r.ok) {
       const c = await r.json();
-      if (c.length > 0) {
-        const ago = timeAgo(c[0].commit.committer.date);
-        document.getElementById('last-update-text').innerHTML =
-          `آخر تحديث للمستودع: <span class="${ago.cls}">${ago.text}</span>`;
+      if (c.length) {
+        const a = ago(c[0].commit.committer.date);
+        document.getElementById('info-text').innerHTML =
+          `آخر تحديث للمستودع: <span class="${a.c}">${a.t}</span>`;
       }
     }
   } catch {}
 
-  // fetch all files in parallel
-  const allFiles = OPERATORS.flatMap(op => op.files);
-  const results = await Promise.all(allFiles.map(f => fetchFileInfo(f)));
-
-  allFiles.forEach((f, i) => { fileData[f] = results[i]; });
-
-  // stats
-  let ok = 0, old = 0, missing = 0;
-  const now = Date.now();
-  Object.values(fileData).forEach(d => {
-    if (!d) { missing++; return; }
-    const hrs = (now - new Date(d.date)) / 1000 / 3600;
-    if (hrs < 25) ok++;
-    else old++;
-  });
-
-  document.getElementById('stat-ok').textContent = ok;
-  document.getElementById('stat-old').textContent = old;
-  document.getElementById('stat-missing').textContent = missing;
-
-  // build UI
+  let totalOk = 0, totalWarn = 0, totalEmpty = 0;
   let html = '';
-  OPERATORS.forEach(op => {
+
+  for (const folder of FOLDERS) {
+    const files = await getFolderFiles(folder.name);
+
+    if (files.length === 0) {
+      totalEmpty++;
+      html += `
+      <div class="operator">
+        <div class="op-header">
+          <div class="op-dot" style="background:${folder.color}"></div>
+          <span class="op-name">${folder.name}</span>
+          <span class="op-count">فارغ</span>
+        </div>
+        <div class="files-list">
+          <div class="empty-folder">📂 لا توجد ملفات في هذا المجلد بعد</div>
+        </div>
+      </div>`;
+      continue;
+    }
+
+    // جلب تاريخ آخر commit لكل ملف بالتوازي
+    const dates = await Promise.all(
+      files.map(f => getLastCommitDate(`${folder.name}/${f.name}`))
+    );
+
+    let rowsHtml = '';
+    files.forEach((f, i) => {
+      const date  = dates[i];
+      let dotCls  = 'dot-old';
+      let ageTxt  = 'غير معروف';
+      let ageCls  = 'red';
+
+      if (date) {
+        const a    = ago(date);
+        ageTxt     = a.t;
+        ageCls     = a.c;
+        const h    = (Date.now() - new Date(date)) / 3600000;
+        dotCls     = h < 24 ? 'dot-ok' : h < 48 ? 'dot-warn' : 'dot-old';
+        if (h < 24) totalOk++; else totalWarn++;
+      } else {
+        totalWarn++;
+      }
+
+      rowsHtml += `
+      <div class="file-row">
+        <div class="file-dot ${dotCls}"></div>
+        <span class="file-name">${f.name}</span>
+        <span class="file-size">${kb(f.size)}</span>
+        <span class="file-age ${ageCls}">${ageTxt}</span>
+        <a href="${RAW}/${folder.name}/${encodeURIComponent(f.name)}" target="_blank" download="${f.name}" class="btn-dl">⬇ تحميل</a>
+      </div>`;
+    });
+
     html += `
     <div class="operator">
       <div class="op-header">
-        <div class="op-dot" style="background:${op.color}"></div>
-        <span class="op-name">${op.name}</span>
-        <span class="op-badge">${op.files.length} ملفات</span>
+        <div class="op-dot" style="background:${folder.color}"></div>
+        <span class="op-name">${folder.name}</span>
+        <span class="op-count">${files.length} ملف</span>
       </div>
-      <div class="files-list">`;
+      <div class="files-list">${rowsHtml}</div>
+    </div>`;
+  }
 
-    op.files.forEach(fname => {
-      const info = fileData[fname];
-      if (!info) {
-        html += `
-        <div class="file-row">
-          <div class="file-status status-missing"></div>
-          <span class="file-name">${fname}</span>
-          <span class="file-date age-old">مفقود</span>
-          <div class="file-actions">
-            <span class="btn-dl" style="opacity:.4">غير متاح</span>
-          </div>
-        </div>`;
-        return;
-      }
-      const hrs = (now - new Date(info.date)) / 1000 / 3600;
-      const statusCls = hrs < 25 ? 'status-ok' : hrs < 48 ? 'status-old' : 'status-missing';
-      const ago = timeAgo(info.date);
-
-      html += `
-        <div class="file-row">
-          <div class="file-status ${statusCls}"></div>
-          <span class="file-name">${fname}</span>
-          <span class="file-size">${formatSize(info.size)}</span>
-          <span class="file-date ${ago.cls}">${ago.text}</span>
-          <div class="file-actions">
-            <a href="${RAW}${fname}" target="_blank" download class="btn-dl">⬇ تحميل</a>
-          </div>
-        </div>`;
-    });
-
-    html += `</div></div>`;
-  });
-
-  container.innerHTML = html;
+  document.getElementById('s-ok').textContent   = totalOk;
+  document.getElementById('s-warn').textContent = totalWarn;
+  document.getElementById('s-miss').textContent = totalEmpty;
+  main.innerHTML = html;
 }
 
-loadAll();
+init();
 </script>
 </body>
 </html>
