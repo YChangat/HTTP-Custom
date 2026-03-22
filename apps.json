@@ -1,0 +1,21 @@
+{
+  "0001": {
+    "name": "ASL Tunnel VPN",
+    "icon": "",
+    "emoji": "⚡",
+    "play": "https://play.google.com/store/apps/details?id=com.asltunnel.vpn"
+  },
+  "0002": {
+    "name": "HTTP Custom",
+    "icon": "",
+    "emoji": "🔧",
+    "play": "https://play.google.com/store/apps/details?id=xyz.easypro.httpcustom"
+  },
+  "0003": {
+    "name": "Bolt UDP VPN",
+    "icon": "",
+    "emoji": "🚀",
+    "play": "https://play.google.com/store/apps/details?id=bot.boltudp.vpn"
+  }
+}
+
