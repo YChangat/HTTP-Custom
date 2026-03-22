@@ -16,6 +16,13 @@
     "icon": "",
     "emoji": "🚀",
     "play": "https://play.google.com/store/apps/details?id=bot.boltudp.vpn"
+  },
+  "0004": {
+    "name": "Direct Tunnel",
+    "icon": "https://images.sftcdn.net/images/t_app-icon-m/p/cd76ce0f-a7d9-4d21-9034-91992d16cf76/1958148264/direct-tunnel-logo",
+    "emoji": "🚀",
+    "play": "https://play.google.com/store/apps/details?id=com.orisse.directtunnel"
   }
+}
 }
 
