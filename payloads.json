@@ -3,8 +3,8 @@
     "sections": [
       {
         "label": "بايلود 1",
-        "payload": "GET / HTTP/1.1[crlf]Host: [host][crlf]Upgrade: websocket[crlf][crlf]",
-        "remote_proxy": "169.150.218.1:8080"
+        "payload": "GET /cdn-cgi HTTP/1.1 [lf]Host: video.pscp.tv[lf][lf]ACL / HTTP/1.1 [lf]Host: [host] [crlf]Connection:[lf]Upgrade: Websocket[lf][lf]",
+        "remote_proxy": "video-cf.twimg.com:8080"
       },
       {
         "label": "بايلود 2",
@@ -22,7 +22,7 @@
     "sections": [
       {
         "label": "إعداد 1",
-        "sni": "speedtest.iam.ma"
+        "sni": "google.com"
       }
     ],
     "iam": {
@@ -36,8 +36,8 @@
     "sections": [
       {
         "label": "بايلود 1",
-        "payload": "GET / HTTP/1.1[crlf]Host: [host][crlf]Upgrade: websocket[crlf][crlf]",
-        "remote_proxy": "41.248.200.1:8080"
+        "payload": "GET /cdn-cgi HTTP/1.1 [lf]Host: video.pscp.tv[lf][lf]ACL / HTTP/1.1 [lf]Host: [host] [crlf]Connection:[lf]Upgrade: Websocket[lf][lf]",
+        "remote_proxy": "video-cf.twimg.com:8080"
       },
       {
         "label": "بايلود 2",
