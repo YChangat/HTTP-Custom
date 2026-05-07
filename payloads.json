@@ -8,8 +8,8 @@
       },
       {
         "label": "بايلود 2",
-        "payload": "CONNECT [host]:443 HTTP/1.1[crlf]Host: [host][crlf][crlf]",
-        "remote_proxy": "197.230.43.1:8080"
+        "payload": "GET /cdn-cgi HTTP/1.1 [lf]Host: video.pscp.tv[lf][lf]ACL / HTTP/1.1 [lf]Host: [host] [crlf]Connection:[lf]Upgrade: Websocket[lf][lf]",
+        "remote_proxy": "cf.twimg.com:2052"
       },
       {
         "label": "بايلود 3",
