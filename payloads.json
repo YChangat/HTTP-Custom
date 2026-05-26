@@ -14,7 +14,7 @@
       {
         "label": "بايلود 3",
         "payload": "GET /cdn-cgi HTTP/1.1 [lf]Host: canary-proxsee-cf.pscp.tv[lf][lf]ACL / HTTP/1.1 [lf]Host: [host] [crlf]Connection:[lf]Upgrade: Websocket[lf][lf]",
-        "remote_proxy": "toast-pos-cd-aw6nznlyniq8jo1s.edge.toasttab.auth0.com"
+        "remote_proxy": "toast-pos-cd-aw6nznlyniq8jo1s.edge.toasttab.auth0.com:8880"
       }
     ]
   },
