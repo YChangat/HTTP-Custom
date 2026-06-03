@@ -15,12 +15,12 @@
         "label": "بايلود 3",
         "payload": "GET /cdn-cgi HTTP/1.1 [lf]Host: canary-proxsee-cf.pscp.tv[lf][lf]ACL / HTTP/1.1 [lf]Host: [host] [crlf]Connection:[lf]Upgrade: Websocket[lf][lf]",
         "remote_proxy": "toast-pos-cd-aw6nznlyniq8jo1s.edge.toasttab.auth0.com:8880"
-      }
+      },
       {
-        "label": 4 بايلود",
+        "label": "4 بايلود",
         "payload": "GET / HTTP/1.1 [lf]Host: dev-guest-cf.pscp.tv:80[crlf]User-Agent: [lf][lf][split]GET / HTTP/1.1 [lf]Host: [host][crlf]User-Agent: [crlf]Connection: upgrade[lf]Upgrade: Websocket[lf][lf][split]",
         "remote_proxy": "104.18.38.9:8880"
-      },
+      }
     ]
   },
   "IAM": {
@@ -53,6 +53,12 @@
         "label": "بايلود 3",
         "payload": "GET /cdn-cgi HTTP/1.1 [lf]Host: canary-proxsee-cf.pscp.tv[lf][lf]ACL / HTTP/1.1 [lf]Host: [host] [crlf]Connection:[lf]Upgrade: Websocket[lf][lf]",
         "remote_proxy": "toast-pos-cd-aw6nznlyniq8jo1s.edge.toasttab.auth0.com:8880"
+      },
+    
+      {
+        "label": "4 بايلود",
+        "payload": "GET / HTTP/1.1 [lf]Host: dev-guest-cf.pscp.tv:80[crlf]User-Agent: [lf][lf][split]GET / HTTP/1.1 [lf]Host: [host][crlf]User-Agent: [crlf]Connection: upgrade[lf]Upgrade: Websocket[lf][lf][split]",
+        "remote_proxy": "104.18.38.9:8880"
       }
     ]
   }
